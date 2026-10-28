@@ -1,0 +1,12 @@
+/* Analytics › Reports — FormGroup's normal density (P1 R7): 32 between the
+   header, sections and actions; 16 between fields. The form's reading
+   width is a layout cap with no token (G17 gap): 640 = 64 × 10. */
+.rp { display: flex; flex-direction: column; gap: var(--spacing-32); max-width: calc(var(--spacing-64) * 10); }
+.rp-flush { margin: 0; }
+.rp-muted { color: var(--text-neutral-muted); }
+.rp-section { display: flex; flex-direction: column; gap: var(--spacing-16); }
+.rp-row { display: grid; gap: var(--spacing-16); grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+.rp-recipients { display: flex; flex-direction: column; gap: var(--spacing-8); }
+.rp-tags { display: flex; flex-wrap: wrap; gap: var(--spacing-8); }
+.rp-actions { display: flex; justify-content: flex-end; gap: var(--spacing-12); }
+@media (max-width: 767px) { .rp-row { grid-template-columns: minmax(0, 1fr); } }

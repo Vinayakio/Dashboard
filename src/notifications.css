@@ -1,0 +1,65 @@
+/* Patterns › Notification — layout only, every space an FDS token. */
+.nt { display: flex; flex-direction: column; gap: var(--spacing-16); }
+.nt-muted { color: var(--text-neutral-muted); }
+.nt-flush { margin: 0; }
+.nt-over { color: var(--text-negative-normal); }
+
+.nt-toolbar { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-12); flex-wrap: wrap; padding-block: var(--spacing-16); }
+.nt-toolbar__search { flex: 1 1 0; min-width: 0; }
+.nt-toolbar__end { display: flex; align-items: center; gap: var(--spacing-8); }
+
+.nt-feed { display: flex; flex-direction: column; gap: var(--spacing-16); }
+.nt-group { display: flex; flex-direction: column; gap: var(--spacing-12); padding-inline: var(--spacing-56); }
+.nt-group__head { display: flex; align-items: center; gap: var(--spacing-12); }
+.nt-group__head > :last-child { flex: 1 1 0; }
+.nt-item { display: flex; align-items: flex-start; gap: var(--spacing-16); }
+.nt-item > :last-child { flex: 1 1 0; min-width: 0; }
+.nt-mark { flex: none; display: inline-flex; align-items: center; justify-content: center; width: var(--spacing-32); height: var(--spacing-32); border-radius: var(--radius-max); color: var(--text-static-white-normal); }
+.nt-mark--critical { background: var(--background-negative-default); }
+.nt-mark--major { background: var(--background-notice-default); }
+.nt-mark--minor { background: var(--background-info-default); }
+.nt-mark--info { background: var(--background-brand-default); }
+.nt-mark--resolved { background: var(--background-positive-default); }
+
+.nt-card { display: flex; gap: var(--spacing-16); justify-content: space-between; }
+/* Inside the card every block sits 12 apart; the title and its description, 8. */
+.nt-card__main { display: flex; flex-direction: column; gap: var(--spacing-12); min-width: 0; }
+.nt-card__text { display: flex; flex-direction: column; gap: var(--spacing-8); }
+.nt-card__actions { display: flex; align-items: flex-start; gap: var(--spacing-8); }
+.nt-title { display: flex; align-items: center; gap: var(--spacing-6); }
+.nt-tags { display: flex; flex-wrap: wrap; gap: var(--spacing-6); }
+
+.nt-detail { display: flex; flex-direction: column; gap: var(--spacing-24); }
+.nt-detail__summary { display: flex; flex-direction: column; gap: var(--spacing-8); }
+.nt-stats { display: flex; gap: var(--spacing-24); margin: 0; }
+.nt-stats dd { margin: 0; }
+.nt-detail__actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--spacing-12); padding-top: var(--spacing-8); }
+.nt-tabpanel { display: flex; flex-direction: column; gap: var(--spacing-16); padding-top: var(--spacing-16); }
+.nt-kv { display: flex; flex-direction: column; gap: var(--spacing-8); margin: 0; }
+.nt-kv__row { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: var(--spacing-12); }
+.nt-kv__row dd { margin: 0; }
+.nt-links { display: flex; flex-direction: column; gap: var(--spacing-8); }
+.nt-links__row { display: flex; flex-wrap: wrap; gap: var(--spacing-24); }
+
+.nt-thread { display: flex; gap: var(--spacing-4); }
+.nt-thread__toggle { flex: none; width: var(--spacing-20); }
+.nt-thread__body { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: var(--spacing-12); }
+.nt-thread__indent { display: flex; flex-direction: column; gap: var(--spacing-12); padding-left: var(--spacing-36); border-left: var(--border-width-thin) dashed var(--border-neutral-default); margin-left: var(--spacing-12); }
+.nt-thread__indent:empty { display: none; }
+.nt-comment { display: flex; gap: var(--spacing-8); }
+.nt-comment__main { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: var(--spacing-4); }
+.nt-comment__head { display: flex; align-items: center; gap: var(--spacing-6); flex-wrap: wrap; }
+.nt-comment__tools { margin-left: auto; display: flex; gap: var(--spacing-4); }
+
+.nt-composer { display: flex; flex-direction: column; gap: var(--spacing-8); width: 100%; }
+.nt-composer__actions { display: flex; justify-content: flex-end; gap: var(--spacing-8); }
+
+
+/* Add notification remark: fields 16 apart (P1 R7); the switch sits beside its label. */
+.nt-remark { display: flex; flex-direction: column; gap: var(--spacing-16); }
+.nt-remark__switch { display: flex; align-items: center; gap: var(--spacing-12); }
+
+/* The filter dot sits ON the button's top-right corner, as on Device: centred
+   on the corner's curve (0.29 × the radius in), ringed in the button's surface. */
+.nt-filter { position: relative; display: inline-flex; }
+.nt-filter__dot { position: absolute; top: calc(var(--radius-m) * 0.29); right: calc(var(--radius-m) * 0.29); transform: translate(50%, -50%); display: inline-flex; line-height: 0; border-radius: var(--radius-max); box-shadow: 0 0 0 var(--border-width-thicker) var(--background-surface-intense); pointer-events: none; }

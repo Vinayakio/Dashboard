@@ -1,0 +1,9 @@
+/* Patterns › Contact — layout only, every space an FDS token. Two short
+   fields per row in the dialog (P1 R10), one column below 768px. */
+.ct-row { display: grid; gap: var(--spacing-16); grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+.ct-flush { margin: 0; }
+.ct-muted { color: var(--text-neutral-muted); }
+.ct-kv { display: flex; flex-direction: column; gap: var(--spacing-12); margin: 0; }
+.ct-kv__row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: var(--spacing-12); align-items: center; }
+.ct-kv__row dd { margin: 0; }
+@media (max-width: 767px) { .ct-row { grid-template-columns: minmax(0, 1fr); } }

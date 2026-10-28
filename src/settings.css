@@ -1,0 +1,38 @@
+/* Patterns › Settings — layout only, every space an FDS token. The two
+   breakpoints are layout widths with no token (G17 gap), stated as in
+   app.css; 767px is FormGroup's "one column below 768px" (P1 R10). */
+.st { display: grid; gap: var(--spacing-16); grid-template-columns: minmax(0, 1fr) minmax(0, 2.5fr); align-items: start; }
+.st-side { display: flex; flex-direction: column; gap: var(--spacing-16); }
+.st-muted { color: var(--text-neutral-muted); }
+.st-flush { margin: 0; }
+
+.st-id { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-4); padding-bottom: var(--spacing-16); text-align: center; }
+/* 72 = 48 + 24; the strip is the info → positive faded wash, tokens only. */
+.st-id__banner { align-self: stretch; height: calc(var(--spacing-48) + var(--spacing-24)); background: linear-gradient(120deg, var(--background-info-faded), var(--background-positive-faded)); }
+/* Half of XLarge (56) up into the banner, ringed in the card's own surface. */
+.st-id__avatar { margin-top: calc(-1 * var(--spacing-28)); margin-bottom: var(--spacing-8); border: var(--border-width-thicker) solid var(--background-surface-intense); border-radius: var(--radius-max); line-height: 0; }
+.st-id__action { align-self: stretch; padding: var(--spacing-12) var(--spacing-16) 0; }
+
+/* Requested overrides of ActionList, scoped to this card: the rows run the
+   card's full width (the list's own inline padding off), and the row
+   centres the 32px tile, which the 20px leading box would pin to the top. */
+.st-config .ds-action-list { padding-inline: var(--spacing-0); }
+.st-config .ds-action-list-item__row { align-items: center; }
+.st-config .ds-action-list-item__leading { height: auto; }
+.st-tile { display: inline-flex; align-items: center; justify-content: center; width: var(--spacing-32); height: var(--spacing-32); border-radius: var(--radius-m); }
+.st-tile--brand { background: var(--background-brand-faded); color: var(--text-brand-normal); }
+.st-tile--info { background: var(--background-info-faded); color: var(--text-info-normal); }
+.st-tile--notice { background: var(--background-notice-faded); color: var(--text-notice-normal); }
+.st-tile--positive { background: var(--background-positive-faded); color: var(--text-positive-normal); }
+.st-tile--negative { background: var(--background-negative-faded); color: var(--text-negative-normal); }
+
+.st-pref { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--spacing-16); }
+.st-pref__text { display: flex; flex-direction: column; gap: var(--spacing-2); }
+
+.st-form { display: flex; flex-direction: column; gap: var(--spacing-16); }
+.st-grid { display: grid; gap: var(--spacing-16); grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+.st-actions { display: flex; justify-content: space-between; align-items: center; gap: var(--spacing-12); flex-wrap: wrap; }
+.st-actions__end { display: flex; gap: var(--spacing-12); }
+
+@media (max-width: 1100px) { .st { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 767px) { .st-grid { grid-template-columns: minmax(0, 1fr); } }

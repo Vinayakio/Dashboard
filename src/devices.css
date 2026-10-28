@@ -1,0 +1,60 @@
+/* Patterns › Device — layout only, every space an FDS token. Four cards per
+   row; the breakpoints that drop to two and one are app.css's own widths
+   (no breakpoint token, G17 gap). The 40px tile is 32 + 8 (no 40 token). */
+.dv { display: flex; flex-direction: column; gap: var(--spacing-24); }
+.dv-muted { color: var(--text-neutral-muted); }
+.dv-flush { margin: 0; }
+.dv-caps { text-transform: uppercase; letter-spacing: var(--letter-spacing-100); }
+.dv-wrap { overflow-wrap: anywhere; }
+
+.dv-toolbar { display: flex; align-items: center; gap: var(--spacing-12); }
+/* The search takes every pixel the buttons leave; each control is 12 apart. */
+.dv-toolbar__search { flex: 1 1 0; min-width: 0; }
+
+.dv-group { display: flex; flex-direction: column; gap: var(--spacing-16); }
+.dv-grid { display: grid; gap: var(--spacing-16); grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.dv-card { display: flex; flex-direction: column; gap: var(--spacing-16); }
+.dv-card__head { display: flex; align-items: center; gap: var(--spacing-12); }
+.dv-check { display: inline-flex; pointer-events: none; }
+.dv-card__name { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; }
+
+.dv-tile { flex: none; display: inline-flex; align-items: center; justify-content: center; width: calc(var(--spacing-32) + var(--spacing-8)); height: calc(var(--spacing-32) + var(--spacing-8)); border-radius: var(--radius-m); }
+.dv-tile--brand { background: var(--background-brand-faded); color: var(--text-brand-normal); }
+.dv-tile--info { background: var(--background-info-faded); color: var(--text-info-normal); }
+.dv-tile--notice { background: var(--background-notice-faded); color: var(--text-notice-normal); }
+.dv-tile--positive { background: var(--background-positive-faded); color: var(--text-positive-normal); }
+.dv-tile--negative { background: var(--background-negative-faded); color: var(--text-negative-normal); }
+.dv-tile--neutral { background: var(--background-neutral-faded); color: var(--text-neutral-normal); }
+
+@media (max-width: 1100px) { .dv-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .dv-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* Add device dialog: fields 16 apart (P1 R7); the template row on a subtle surface. */
+.dv-add { display: flex; flex-direction: column; gap: var(--spacing-16); }
+.dv-template { display: flex; align-items: center; gap: var(--spacing-12); padding: var(--spacing-16); border-radius: var(--radius-m); background: var(--background-surface-subtle); }
+.dv-template__text { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: var(--spacing-2); }
+
+
+/* The filter dot sits ON the button's top-right corner: centred on the
+   corner's curve (its 45° point lies 0.29 × the radius in from each edge,
+   1 - 1/√2), with a ring in the button's own surface so it cuts the border
+   cleanly, the way a notification dot sits on an icon. */
+.dv-filter { position: relative; display: inline-flex; }
+.dv-filter__dot { position: absolute; top: calc(var(--radius-m) * 0.29); right: calc(var(--radius-m) * 0.29); transform: translate(50%, -50%); display: inline-flex; line-height: 0; border-radius: var(--radius-max); box-shadow: 0 0 0 var(--border-width-thicker) var(--background-surface-intense); pointer-events: none; }
+
+/* Edit device wizard: the stepper, then one step's fields 16 apart (P1 R7),
+   two short fields per row (P1 R10); Back left, Cancel / Next right. */
+.dv-edit { display: flex; flex-direction: column; gap: var(--spacing-24); }
+.dv-edit__form { display: flex; flex-direction: column; gap: var(--spacing-16); }
+.dv-edit__row { display: grid; gap: var(--spacing-16); grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+.dv-edit__tags { display: flex; flex-direction: column; gap: var(--spacing-8); }
+.dv-edit__tag-list { display: flex; flex-wrap: wrap; gap: var(--spacing-8); }
+.dv-edit__tag-add { display: flex; align-items: flex-start; gap: var(--spacing-12); }
+.dv-edit__tag-add > :first-child { flex: 1 1 0; min-width: 0; }
+.dv-edit__search { display: flex; align-items: center; gap: var(--spacing-12); }
+.dv-edit__search-field { flex: 1 1 0; min-width: 0; }
+.dv-edit__pages { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-12); }
+.dv-edit__footer { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-12); width: 100%; }
+.dv-edit__footer-end { display: flex; gap: var(--spacing-12); }
+@media (max-width: 767px) { .dv-edit__row { grid-template-columns: minmax(0, 1fr); } }

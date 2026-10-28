@@ -1,0 +1,112 @@
+/* Agents — layout only, on FDS tokens. Every space, radius, border and colour
+   is a token; no custom property is defined (G17). The px values left are
+   column, reading and breakpoint widths that have no token — each is marked
+   "no token" where it is used (G17: a stated gap, not a new token).
+
+   Page spacing follows S2: the agent list is a standard page (the shell pads
+   it); an open agent is a canvas page (pagePadding none + pageHeight fill),
+   so its bar and body bring their own padding from the scale. */
+
+.ag-muted { color: var(--text-neutral-muted); }
+.ag-ellipsis { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ag-build p, .ag-deploy p, .ag-deploy h2, .ag-play p, .ag-play h2,
+.ag-card__desc, .ag-flush, .ag-history, .ag-sub__list, .ag-auto { margin: 0; }
+
+/* The list: one block (S1 "decrease the gap") — the bar, then cards or the table */
+.ag-list { display: flex; flex-direction: column; gap: var(--spacing-12); }
+.ag-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--spacing-12); }
+.ag-search { flex: 0 1 320px; min-width: 200px; } /* no token: a field width */
+.ag-head-actions { display: flex; gap: var(--spacing-8); }
+.ag-row-name { display: inline-flex; align-items: center; gap: var(--spacing-8); }
+.ag-cards { display: grid; gap: var(--spacing-12); grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); grid-auto-rows: 1fr; } /* no token: a tile width */
+.ag-card__body { display: flex; flex-direction: column; gap: var(--spacing-12); height: 100%; }
+.ag-card__head { display: flex; align-items: center; gap: var(--spacing-12); }
+.ag-card__id { display: flex; flex: 1; flex-direction: column; min-width: 0; }
+.ag-card__desc { display: -webkit-box; flex: 1; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.ag-card__foot { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-8); }
+.ag-card__foot > :last-child, .ag-card__head > :last-child { flex-shrink: 0; }
+
+/* Dialogs — FormGroup (P1 R7): 16px between fields */
+.ag-form { display: flex; flex-direction: column; gap: var(--spacing-16); }
+
+/* The workspace (a canvas page): the bar, a Divider, then the mode's body */
+.ag-ws__bar {
+    display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: var(--spacing-16);
+    padding: var(--spacing-12) var(--spacing-16);
+}
+.ag-ws__id { display: flex; align-items: center; gap: var(--spacing-12); min-width: 0; }
+.ag-ws__name { display: flex; flex-direction: column; min-width: 0; }
+.ag-ws__actions { display: flex; align-items: center; justify-content: flex-end; gap: var(--spacing-8); }
+.ag-ws__body { display: flex; flex-direction: column; min-height: 0; }
+.ag-ws__body > * { flex: 1 1 auto; min-height: 0; }
+.ag-history { display: flex; flex-direction: column; padding: 0; list-style: none; }
+.ag-history__row {
+    display: flex; align-items: center; gap: var(--spacing-12); padding: var(--spacing-12) 0;
+    border-bottom: var(--border-width-thin) solid var(--border-neutral-default);
+}
+.ag-history__row:last-child { border-bottom: 0; }
+.ag-history__text { display: flex; flex: 1; flex-direction: column; }
+
+/* Build: main | Divider | side */
+.ag-build { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(360px, 420px); height: 100%; min-height: 0; } /* no token: the side column */
+.ag-build__main, .ag-build__side { height: 100%; min-height: 0; }
+.ag-build__main-viewport, .ag-build__side-viewport { box-sizing: border-box; display: flex; flex-direction: column; }
+.ag-build__main-viewport { gap: var(--spacing-16); padding: var(--spacing-16); }
+.ag-build__side-viewport { padding: 0 var(--spacing-16); }
+.ag-build__head { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-8); }
+.ag-build__ai { display: flex; gap: var(--spacing-4); }
+.ag-sub { display: flex; flex-direction: column; gap: var(--spacing-12); }
+.ag-sub__list, .ag-auto { display: flex; flex-direction: column; gap: var(--spacing-8); padding: 0; list-style: none; }
+.ag-sub__row, .ag-auto__row { display: flex; align-items: center; gap: var(--spacing-8); }
+.ag-sub__row > :nth-child(2), .ag-auto__text { flex: 1; min-width: 0; }
+.ag-auto__text { display: flex; flex-direction: column; }
+.ag-sec {
+    display: flex; flex-direction: column; gap: var(--spacing-12); padding: var(--spacing-16) 0;
+    border-bottom: var(--border-width-thin) solid var(--border-neutral-default);
+}
+.ag-sec:last-child { border-bottom: 0; }
+.ag-sec__head { display: flex; align-items: center; gap: var(--spacing-8); min-height: var(--spacing-32); }
+.ag-sec__action { display: flex; margin-left: auto; }
+.ag-sec__buttons { display: flex; gap: var(--spacing-4); }
+.ag-tags { display: flex; flex-wrap: wrap; gap: var(--spacing-8); }
+.ag-grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--spacing-12); }
+.ag-features { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--spacing-8); }
+.ag-feature { display: flex; flex-direction: column; gap: var(--spacing-4); }
+.ag-feature__head { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-8); }
+
+/* Playground: sessions | Divider | chat | Divider | run details. The canvas is
+   the surface — no bordered, rounded box of its own (G7: not a Card look-alike). */
+.ag-play { display: grid; grid-template-columns: 240px auto minmax(0, 1fr) auto 320px; height: 100%; min-height: 0; overflow: hidden; } /* no token: the two side columns */
+.ag-play__sessions, .ag-play__side { display: flex; flex-direction: column; gap: var(--spacing-12); min-height: 0; padding: var(--spacing-12); }
+.ag-play__history { flex: 1; min-height: 0; }
+.ag-play__side > * { display: flex; flex: 1; flex-direction: column; gap: var(--spacing-12); min-height: 0; }
+.ag-play__panel:not([hidden]) { display: flex; flex: 1; flex-direction: column; min-height: 0; }
+.ag-play__side-scroll { flex: 1; min-height: 0; }
+.ag-play__chat { display: flex; flex-direction: column; min-height: 0; }
+.ag-play__thread { display: flex; flex: 1; flex-direction: column; min-height: 0; padding: var(--spacing-16) var(--spacing-24) 0; }
+.ag-play__thread > * { flex: 1; min-height: 0; }
+.ag-play__home { width: 100%; max-width: 560px; margin: 0 auto; } /* no token: a reading width */
+.ag-answer { display: flex; flex-direction: column; gap: var(--spacing-8); }
+.ag-composer { padding: var(--spacing-12) var(--spacing-24) var(--spacing-16); }
+.ag-runs { display: flex; flex-direction: column; gap: var(--spacing-16); }
+.ag-run { display: flex; flex-direction: column; gap: var(--spacing-8); }
+.ag-events, .ag-artifacts { display: flex; flex-direction: column; gap: var(--spacing-8); margin: 0; padding: 0; list-style: none; }
+.ag-event, .ag-artifact { display: flex; align-items: flex-start; gap: var(--spacing-8); color: var(--text-neutral-muted); }
+.ag-event__text { display: flex; flex-direction: column; color: var(--text-neutral-normal); }
+.ag-artifact > :nth-child(2) { flex: 1; color: var(--text-neutral-normal); }
+
+/* Deploy */
+.ag-deploy { height: 100%; min-height: 0; }
+.ag-deploy__viewport { box-sizing: border-box; padding: var(--spacing-24) var(--spacing-16); }
+.ag-deploy__inner { display: flex; flex-direction: column; gap: var(--spacing-20); max-width: 880px; margin: 0 auto; } /* no token: a reading width */
+.ag-deploy__head { display: flex; flex-direction: column; align-items: flex-start; gap: var(--spacing-8); }
+.ag-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--spacing-12); }
+.ag-step { display: flex; flex-direction: column; gap: var(--spacing-4); }
+.ag-step__top { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--spacing-8); color: var(--text-neutral-muted); }
+.ag-tabpanel { padding-top: var(--spacing-16); }
+.ag-code { display: flex; flex-direction: column; gap: var(--spacing-8); }
+.ag-code__bar { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-12); }
+.ag-code__actions { display: flex; align-items: center; gap: var(--spacing-4); }
+.ag-how { display: flex; flex-direction: column; gap: var(--spacing-16); }
+
+@media (width <= 900px) { .ag-steps { grid-template-columns: 1fr; } } /* no token: a breakpoint */
